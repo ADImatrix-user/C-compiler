@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- Primary SEO Meta Tags -->
+  <title>AB C Studio | Best Online C Compiler & Runner (GCC C17)</title>
+  <meta name="title" content="AB C Studio | Best Online C Compiler & Runner (GCC C17)">
+  <meta name="description" content="Fast, modern, and distraction-free online C compiler & IDE by Aditya. Write, compile, and run C code instantly with real-time interactive terminal input (scanf), line numbers, and desktop & mobile support.">
+  <meta name="keywords" content="online c compiler, c compiler online, run c online, gcc c compiler, c programming online, c ide online, compile c code, best online c compiler, interactive c compiler scanf, ab c studio, aditya c compiler">
+  <meta name="author" content="Aditya (AB Studio)">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#090a10">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AB C Studio | Best Online C Compiler & Runner">
+  <meta property="og:description" content="Distraction-free online C compiler with real-time interactive terminal input, GCC 13.2 support, and seamless mobile experience.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/ADImatrix-user/c-compiler/main/preview.png">
+  
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="AB C Studio | Best Online C Compiler & Runner">
+  <meta property="twitter:description" content="Fast, distraction-free online C compiler and runner with GCC support.">
+
+  <!-- Structured Data JSON-LD Schema for Google Search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AB C Studio Online C Compiler",
+    "url": "https://adimatrix-user.github.io/c-compiler/",
+    "description": "A high-performance, distraction-free online C compiler and interactive execution engine.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Aditya",
+      "url": "https://github.com/ADImatrix-user"
+    }
+  }
+  </script>
+  
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container" id="appContainer">
+    
+    <!-- TOP NAVIGATION BAR -->
+    <header class="app-navbar">
+      <!-- Left: Unique AB Studio Logo -->
+      <div class="nav-left">
+        <div class="brand-badge">
+          <div class="brand-emblem">&lt;AB&gt;</div>
+          <div class="brand-text">
+            <span class="brand-title">C Studio</span>
+            <span class="brand-version">v2.4 • GCC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile View Switcher (Visible only on mobile/tablet) -->
+      <div class="mobile-view-tabs" id="mobileViewTabs">
+        <button class="view-tab active" id="tabViewCode" aria-label="View Code Editor">
+          <i class="fa-solid fa-code"></i>
+          <span>Editor</span>
+        </button>
+        <button class="view-tab" id="tabViewOutput" aria-label="View Output Console">
+          <i class="fa-solid fa-terminal"></i>
+          <span>Output</span>
+          <span class="output-badge-dot" id="outputBadgeDot"></span>
+        </button>
+      </div>
+
+      <!-- Right: User Identity & Actions -->
+      <div class="nav-right">
+        <!-- Quick Stats Pill (Desktop) -->
+        <div class="engine-pill desktop-only">
+          <span class="pulse-indicator"></span>
+          <span class="engine-name">C17 / GCC 13.2</span>
+        </div>
+
+        <div class="user-chip" id="userChip" title="AB Developer Profile">
+          <div class="chip-avatar">&lt;AB&gt;</div>
+          <span class="chip-name" id="userNameDisplay">Aditya</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="workspace-layout" id="workspaceLayout">
+      
+      <!-- LEFT PANEL: CODE EDITOR -->
+      <section class="workspace-panel panel-editor" id="panelEditor">
+        <!-- Editor Sub-header -->
+        <div class="panel-subbar">
+          <div class="subbar-left">
+            <div class="active-file-pill">
+              <i class="fa-solid fa-file-code file-icon"></i>
+              <span class="file-title" id="fileTitleDisplay">main.c</span>
+            </div>
+
+            <!-- Browse / Open File Button -->
+            <button class="browse-file-btn" id="browseFileBtn" title="Open or Browse .c file from your device">
+              <i class="fa-solid fa-folder-open"></i>
+              <span>Open File</span>
+            </button>
+          </div>
+
+          <div class="subbar-right">
+            <!-- Hidden File Input for Open File -->
+            <input type="file" id="fileUploadInput" accept=".c,.h,.cpp,.txt" class="visually-hidden">
+
+            <!-- RUN BUTTON (Primary Action) -->
+            <button class="run-action-btn" id="runCodeBtn" title="Compile & Execute (Ctrl + Enter)">
+              <i class="fa-solid fa-play run-icon" id="runIcon"></i>
+              <span class="run-text" id="runBtnLabel">Run Code</span>
+              <kbd class="shortcut-tag desktop-only">Ctrl+↵</kbd>
+            </button>
+          </div>
+        </div>
+
+        <!-- Code Editor Area -->
+        <div class="editor-viewport" id="editorDropZone">
+          <!-- Drop Overlay -->
+          <div class="drop-overlay" id="dropOverlay">
+            <div class="drop-box">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <h3>Drop your .c file here</h3>
+              <p>Instantly load and execute</p>
+            </div>
+          </div>
+
+          <!-- Code Surface -->
+          <div class="code-surface">
+            <div class="line-gutter" id="lineNumbers">1</div>
+            <textarea 
+              id="codeEditor" 
+              class="code-textarea" 
+              spellcheck="false" 
+              autocomplete="off" 
+              autocorrect="off" 
+              autocapitalize="off" 
+              placeholder="// Write your C code here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Editor Status Footer (Mobile/Desktop) -->
+        <div class="panel-statusbar">
+          <div class="status-meta">
+            <span class="meta-item"><i class="fa-solid fa-lines-leaning"></i> <span id="lineCountLabel">1</span> lines</span>
+            <span class="meta-item"><i class="fa-solid fa-font"></i> <span id="charCountLabel">0</span> chars</span>
+          </div>
+          <div class="quick-tip desktop-only">
+            <span><i class="fa-solid fa-lightbulb"></i> <kbd>Tab</kbd> indent • <kbd>Ctrl+S</kbd> save</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPLIT RESIZER (Desktop & Tablet) -->
+      <div class="workspace-resizer" id="workspaceResizer" title="Drag to adjust panel width">
+        <div class="resizer-grip">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL: OUTPUT CONSOLE -->
+      <section class="workspace-panel panel-output" id="panelOutput">
+        <!-- Output Sub-header -->
+        <div class="panel-subbar">
+          <div class="subbar-left">
+            <div class="output-heading">
+              <i class="fa-solid fa-terminal output-icon"></i>
+              <h2>Output</h2>
+            </div>
+            <span class="status-badge ready" id="compilerStatusBadge">Ready</span>
+          </div>
+
+          <div class="subbar-right">
+            <!-- Share Code Button -->
+            <button class="nav-icon-btn" id="shareCodeBtn" title="Copy code to clipboard">
+              <i class="fa-solid fa-share-nodes"></i>
+            </button>
+
+            <!-- Three-Dots Dropdown Menu -->
+            <div class="menu-dropdown-wrapper">
+              <button class="nav-icon-btn" id="menuToggleBtn" title="More IDE Options" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+              </button>
+
+              <div class="studio-dropdown" id="studioDropdown">
+                <button class="dropdown-row" id="fullScreenToggleBtn">
+                  <i class="fa-solid fa-expand" id="fullScreenIcon"></i>
+                  <span id="fullScreenText">Full Screen</span>
+                </button>
+                <button class="dropdown-row" id="clearConsoleBtn">
+                  <i class="fa-solid fa-broom"></i>
+                  <span>Clear Console</span>
+                </button>
+                <button class="dropdown-row" id="copyConsoleBtn">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Copy Output</span>
+                </button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-row" id="downloadSourceBtn">
+                  <i class="fa-solid fa-download"></i>
+                  <span>Download .c File</span>
+                </button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-row" id="contactDevBtn">
+                  <i class="fa-solid fa-address-card"></i>
+                  <span>Developer Contacts</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Terminal Viewport -->
+        <div class="output-viewport" id="outputViewport">
+          <!-- Terminal Logs Stream -->
+          <div class="terminal-logs" id="terminalLogs">
+            <!-- Will be dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Output Status Footer -->
+        <div class="panel-statusbar">
+          <div class="status-meta">
+            <span class="meta-item"><i class="fa-solid fa-stopwatch"></i> <span id="executionTimeLabel">0 ms</span></span>
+            <span class="meta-item"><i class="fa-solid fa-circle-check"></i> <span id="exitStatusLabel">Exit: 0</span></span>
+          </div>
+          <div class="quick-tip">
+            <button class="creator-badge-btn" id="footerContactBtn" title="Contact Aditya">
+              <i class="fa-solid fa-code"></i> By Aditya &lt;AB&gt;
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FLOATING RUN BUTTON FOR MOBILE -->
+    <div class="mobile-floating-bar" id="mobileFloatingBar">
+      <button class="mobile-run-btn" id="mobileRunBtn">
+        <i class="fa-solid fa-play"></i>
+        <span>Run Code</span>
+      </button>
+    </div>
+
+    <!-- DEVELOPER CONTACT & SOCIALS MODAL -->
+    <div class="contact-modal-backdrop" id="contactModal">
+      <div class="contact-card">
+        <div class="contact-header">
+          <div class="contact-profile">
+            <div class="contact-avatar">&lt;AB&gt;</div>
+            <div class="contact-name-info">
+              <h3 id="modalDevName">Aditya</h3>
+              <span class="contact-role">Creator & Developer</span>
+            </div>
+          </div>
+          <button class="modal-close-icon" id="closeContactModalBtn" aria-label="Close Contact Dialog">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="contact-body">
+          <p class="contact-intro">Feel free to connect, report bugs, or collaborate on C projects!</p>
+
+          <!-- Contact Channels -->
+          <div class="contact-links-grid">
+            <!-- GitHub Link -->
+            <a href="https://github.com/ADImatrix-user" target="_blank" rel="noopener noreferrer" class="contact-item contact-github" id="githubLinkCard" title="Open GitHub Profile">
+              <div class="contact-item-left">
+                <div class="contact-icon-box github-box">
+                  <i class="fa-brands fa-github"></i>
+                </div>
+                <div class="contact-item-details">
+                  <span class="contact-item-title">GitHub</span>
+                  <span class="contact-item-subtitle" id="githubUrlLabel">github.com/ADImatrix-user</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+            </a>
+
+            <!-- Reddit Link -->
+            <a href="https://www.reddit.com/user/Abject_Plan6375/" target="_blank" rel="noopener noreferrer" class="contact-item contact-reddit" id="redditLinkCard" title="Open Reddit Profile">
+              <div class="contact-item-left">
+                <div class="contact-icon-box reddit-box">
+                  <i class="fa-brands fa-reddit-alien"></i>
+                </div>
+                <div class="contact-item-details">
+                  <span class="contact-item-title">Reddit</span>
+                  <span class="contact-item-subtitle" id="redditUrlLabel">reddit.com/user/Abject_Plan6375</span>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+            </a>
+
+            <!-- Gmail Link (Opens Gmail Web Compose directly prefilled) -->
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bakodiyaadi@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-item contact-gmail" id="gmailLinkCard" title="Compose Email to Aditya in Gmail">
+              <div class="contact-item-left">
+                <div class="contact-icon-box gmail-box">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="contact-item-details">
+                  <span class="contact-item-title">Gmail</span>
+                  <span class="contact-item-subtitle" id="gmailUrlLabel">bakodiyaadi@gmail.com</span>
+                </div>
+              </div>
+              <div class="gmail-actions">
+                <span class="gmail-action-btn" title="Open Gmail Compose">
+                  <i class="fa-solid fa-paper-plane"></i>
+                </span>
+                <button type="button" class="gmail-action-btn copy-btn" id="copyEmailBtn" title="Copy Email Address" onclick="event.preventDefault(); event.stopPropagation();">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+  </div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
