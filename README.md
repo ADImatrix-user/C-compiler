@@ -69,17 +69,19 @@ c-compiler/
 
 ---
 
-💻 How to View This Portfolio
+## 💻 How to View This Portfolio
+
 There are two ways to view this project on your computer.
 
-Method 1: Download as ZIP
-1.Click the Code button on this GitHub repository.
-2.Select Download ZIP.
-3.Extract the downloaded ZIP file.
-4.Open the extracted folder.
-5.Double-click index.html, or right-click it and choose Open with → Google Chrome (or any modern web browser).
+### Method 1: Download as ZIP 
 
-Method 2: Copy & Paste ( recommonded)
+1. Click the **Code** button on this GitHub repository.
+2. Select **Download ZIP**.
+3. Extract the downloaded ZIP file.
+4. Open the extracted folder.
+5. Double-click **`index.html`**, or right-click it and choose **Open with → Google Chrome** (or any modern web browser).
+
+### Method 2: Copy & Paste ( recommended)
 1.Copy this URL : https://adimatrix-user.github.io/C-compiler/
 2.Pate this in address bar and it will work.
 
