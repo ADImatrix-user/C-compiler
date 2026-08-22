@@ -11,7 +11,7 @@
     <b>Write, compile, and execute C code instantly with peace of mind. No ads, no clutter, pure coding flow.</b>
   </p>
 
-  [🚀 Live Demo](https://adimatrix-user.github.io/c-compiler/) • [✨ Features](#-key-features) • [📱 Mobile UX](#-mobile--tablet-experience) • [🛠️ Getting Started](#-getting-started) • [📬 Contact](#-connect--contact)
+ • [✨ Features](#-key-features) • [📱 Mobile UX](#-mobile--tablet-experience) • [🛠️ Getting Started](#-getting-started) • [📬 Contact](#-connect--contact)
 
 </div>
 
