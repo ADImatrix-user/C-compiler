@@ -5,7 +5,6 @@
 
   [![GCC 13.2 / C17](https://img.shields.io/badge/GCC-13.2%20%7C%20C17-38bdf8?style=for-the-badge&logo=gnu&logoColor=white)](https://gcc.gnu.org/)
   [![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20Mobile%20%7C%20Desktop-2563eb?style=for-the-badge)](https://github.com/ADImatrix-user)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge)](LICENSE)
   [![Made by Aditya](https://img.shields.io/badge/Made%20by-Aditya%20%3CAB%3E-a855f7?style=for-the-badge)](https://github.com/ADImatrix-user)
 
   <p align="center">
@@ -70,34 +69,7 @@ c-compiler/
 
 ---
 
-## 🛠️ Getting Started
 
-### Option 1: Run Locally in Browser
-No node setup, npm install, or build step required! Simply clone and open:
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/ADImatrix-user/c-compiler.git
-
-# 2. Navigate to the project directory
-cd c-compiler
-
-# 3. Open index.html in your favorite browser (Chrome, Edge, Firefox, Safari)
-# On Windows:
-start index.html
-
-# On macOS:
-open index.html
-
-# On Linux:
-xdg-open index.html
-```
-
-### Option 2: Deploy to GitHub Pages in 60 Seconds
-1. Push this repository to your GitHub account under `https://github.com/ADImatrix-user/c-compiler`.
-2. Go to **Settings** > **Pages**.
-3. Under **Branch**, select `main` and click **Save**.
-4. Your compiler is live at: `https://adimatrix-user.github.io/c-compiler/` 🎉
 
 ---
 
