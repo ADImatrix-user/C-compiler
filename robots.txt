@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adimatrix-user.github.io/c-compiler/sitemap.xml
