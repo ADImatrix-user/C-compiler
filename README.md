@@ -27,21 +27,17 @@ Unlike bloated online tools filled with invasive ads and distracting banners, **
 
 ## ✨ Key Features
 
-### 💻 1. True Inline Interactive Terminal Stream (`scanf` Support)
-- **Line-by-line interactive execution**: When your program calls `scanf()`, the typing prompt appears directly on the terminal line without restarting from the beginning or duplicating `printf` statements.
-- **Accurate input echoing**: Your inputs lock into the stream naturally, exactly like a native Linux terminal.
-
-### 🖥️ 2. Distraction-Free Two-Panel IDE
+### 🖥️ 1. Distraction-Free Two-Panel IDE
 - **Clean Editor**: Monospaced code editor powered by `JetBrains Mono` with line numbers gutter, active syntax highlighting feel, and auto-indentation.
 - **Draggable Split Resizer**: Smooth mouse and touch-friendly vertical divider (`:::`) to adjust left/right panel widths dynamically.
 - **Three-Dots (⋮) Menu**: One-click **Full Screen** mode for deep focus, **Clear Console**, **Copy Output**, and **Download .c File**.
 
-### 📱 3. First-Class Mobile & Tablet Support
+### 📱 2. First-Class Mobile & Tablet Support
 - **Segmented View Switcher**: Clean `[ 💻 Editor ]` vs `[ ⚡ Output ]` toggle in the top bar on mobile screens (`<= 768px`).
 - **Auto-Switch on Execution**: Pressing **Run Code** on mobile automatically glides to the Output screen to display results instantly.
 - **Floating Run Action Button**: Touch-optimized floating button for quick one-tap compiling on phones.
 
-### 📂 4. File Management & Shortcuts
+### 📂 3. File Management & Shortcuts
 - **Open / Browse File**: Open and load any `.c`, `.h`, `.cpp`, or `.txt` file directly from your device.
 - **Drag & Drop**: Drop any `.c` file anywhere over the editor surface to load it instantly.
 - **Keyboard Shortcuts**:
@@ -50,7 +46,7 @@ Unlike bloated online tools filled with invasive ads and distracting banners, **
   - <kbd>Tab</kbd> : 4-space auto-indentation
   - Auto-closing bracket pairs: `()`, `{}`, `[]`, `""`, `''`
 
-### 🛡️ 5. Resilient Dual GCC Engine
+### 🛡️ 4. Resilient Dual GCC Engine
 - Powered by high-speed GCC 13.2 / C17 compilation engines with multi-endpoint fallback (Wandbox GCC + Piston API) for 99.9% uptime.
 - Real-time execution timer (`ms`) and exit status reporting (`Exit Code: 0`).
 
