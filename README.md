@@ -52,6 +52,7 @@ Unlike bloated online tools filled with invasive ads and distracting banners, **
 - Hardened CSS stylesheet and HTML container hierarchy for consistent rendering.
 - Enhanced keyboard shortcut accelerators across all desktop browsers.
 
+---
 
 ## ✨ Key Features
 
