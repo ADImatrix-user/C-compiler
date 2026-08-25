@@ -25,6 +25,34 @@ Unlike bloated online tools filled with invasive ads and distracting banners, **
 
 ---
 
+## 🚀 What's New in v2.5
+
+### 🧭 Complete UI/UX & Layout Redesign
+- **Full-Height Workspace**: Removed bulky double-toolbars to give 100% vertical screen height to the code editor and execution console.
+- **Ultra-Slim Top Bar**: A unified header featuring the 3-line main menu trigger (`☰ Menu`), instant **Editor/Output** switcher tabs, and a quick **▶ Run** button (`Ctrl+↵`).
+- **Responsive Split View**: Seamless layout transitions between desktop split-screen and mobile single-panel views.
+
+### 📑 "Line-Line" Main Menu Drawer with Collapsible Accordions
+- **Modern Sidebar Panel**: A sleek slide-out drawer with backdrop blur, displaying the compiler version at the top and developer contact at the bottom.
+- **Collapsible Categories**: Sub-options stay hidden by default and expand on click with smooth slide animations and rotating chevrons:
+  - 📁 **Browse**: Open New Program, Open Local File, Save (`Ctrl+S`), Save As, Share Code.
+  - ✏️ **Edit**: Undo (`Ctrl+Z`), Redo (`Ctrl+Y`), Cut, Copy, Paste, Delete, Select All (`Ctrl+A`), In-Editor Find & Replace (`Ctrl+F`), Keyboard Shortcuts.
+  - ⚙️ **Personalization**: Theme Picker, Custom Font Sizes (12px–20px), Tab Size config (2, 4, 8 spaces), and Line Numbers toggle.
+
+### 🎨 10 Curated Themes with Category Filtering
+- **5 Dark Themes**: *Cyber Night (Default)*, *Dracula Midnight*, *Monokai Pro*, *Nordic Frost*, *Emerald Matrix*.
+- **5 Light Themes**: *Clean Slate*, *Solarized Light*, *GitHub Light*, *Rosé Dawn*, *Nordic Snow*.
+- **Interactive Theme Picker**: Modal dialog with **All**, **Light**, and **Dark** filter tabs, live color swatches, and persistent local storage saving.
+
+### 📇 Unified "My Contact" Hub
+- Consolidated developer contact options into a single, polished profile card.
+- Direct links for **GitHub**, **Reddit**, and **Gmail** (with 1-click email address copy).
+
+### ⚡ Engine Optimization & Bug Fixes
+- Hardened CSS stylesheet and HTML container hierarchy for consistent rendering.
+- Enhanced keyboard shortcut accelerators across all desktop browsers.
+
+
 ## ✨ Key Features
 
 ### 🖥️ 1. Distraction-Free Two-Panel IDE
