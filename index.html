@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cyber-night">
 
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   <meta name="google-site-verification" content="r9qFsjKjcm6N4WR_D_9vuO_V-h5e2W-Ku5GJHXh8E8U" />
   <meta name="title" content="AB C Studio | Best Online C Compiler & Runner (GCC C17)">
   <meta name="description"
-    content="Fast, modern, and distraction-free online C compiler & IDE by Aditya. Write, compile, and run C code instantly with real-time interactive terminal input (scanf), line numbers, and desktop & mobile support.">
+    content="Fast, modern, and distraction-free online C compiler & IDE by Aditya. Write, compile, and run C code instantly with real-time interactive terminal input (scanf), 10 custom themes, and full mobile & desktop support.">
   <meta name="keywords"
     content="online c compiler, c compiler online, run c online, gcc c compiler, c programming online, c ide online, compile c code, best online c compiler, interactive c compiler scanf, ab c studio, aditya c compiler">
   <meta name="author" content="Aditya (AB Studio)">
@@ -25,7 +25,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="AB C Studio | Best Online C Compiler & Runner">
   <meta property="og:description"
-    content="Distraction-free online C compiler with real-time interactive terminal input, GCC 13.2 support, and seamless mobile experience.">
+    content="Distraction-free online C compiler with real-time interactive terminal input, GCC 13.2 support, and 10 custom themes.">
   <meta property="og:image" content="https://raw.githubusercontent.com/ADImatrix-user/c-compiler/main/preview.png">
 
   <!-- Twitter Card -->
@@ -73,82 +73,281 @@
 <body>
   <div class="app-container" id="appContainer">
 
-    <!-- TOP NAVIGATION BAR -->
+    <!-- =========================================================================
+         SLIM TOP BAR (Single Line)
+         ========================================================================= -->
     <header class="app-navbar">
-      <!-- Left: Unique AB Studio Logo -->
+      <!-- Left: 3-Line "Menu" Button & Compact Name -->
       <div class="nav-left">
-        <div class="brand-badge">
+        <button type="button" class="menu-hamburger-btn" id="menuDrawerOpenBtn" title="Open Main Menu" aria-label="Open Main Menu">
+          <i class="fa-solid fa-bars"></i>
+          <span class="hamburger-label">Menu</span>
+        </button>
+
+        <div class="brand-badge desktop-only">
           <div class="brand-emblem">&lt;AB&gt;</div>
-          <div class="brand-text">
-            <span class="brand-title">C Studio</span>
-            <span class="brand-version">v2.4 • GCC</span>
-          </div>
+          <span class="brand-title">C Studio</span>
         </div>
       </div>
 
-      <!-- Mobile View Switcher (Visible only on mobile/tablet) -->
-      <div class="mobile-view-tabs" id="mobileViewTabs">
-        <button class="view-tab active" id="tabViewCode" aria-label="View Code Editor">
+      <!-- Center: Editor & Output Switcher -->
+      <div class="view-switch-tabs" id="viewSwitchTabs">
+        <button type="button" class="view-tab active" id="tabViewCode" aria-label="View Code Editor">
           <i class="fa-solid fa-code"></i>
           <span>Editor</span>
         </button>
-        <button class="view-tab" id="tabViewOutput" aria-label="View Output Console">
+        <button type="button" class="view-tab" id="tabViewOutput" aria-label="View Output Console">
           <i class="fa-solid fa-terminal"></i>
           <span>Output</span>
           <span class="output-badge-dot" id="outputBadgeDot"></span>
         </button>
       </div>
 
-      <!-- Right: User Identity & Actions -->
+      <!-- Right: Run Code Button -->
       <div class="nav-right">
-        <!-- Quick Stats Pill (Desktop) -->
-        <div class="engine-pill desktop-only">
-          <span class="pulse-indicator"></span>
-          <span class="engine-name">C17 / GCC 13.2</span>
-        </div>
-
-        <div class="user-chip" id="userChip" title="AB Developer Profile">
-          <div class="chip-avatar">&lt;AB&gt;</div>
-          <span class="chip-name" id="userNameDisplay">Aditya</span>
-        </div>
+        <button type="button" class="run-action-btn" id="runCodeBtn" title="Compile & Execute (Ctrl + Enter)">
+          <i class="fa-solid fa-play run-icon" id="runIcon"></i>
+          <span class="run-text" id="runBtnLabel">Run</span>
+          <kbd class="shortcut-tag desktop-only">Ctrl+↵</kbd>
+        </button>
       </div>
     </header>
 
-    <!-- MAIN WORKSPACE -->
-    <main class="workspace-layout" id="workspaceLayout">
+    <!-- =========================================================================
+         "LINE LINE" MAIN MENU DRAWER (Sidebar)
+         ========================================================================= -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
 
-      <!-- LEFT PANEL: CODE EDITOR -->
-      <section class="workspace-panel panel-editor" id="panelEditor">
-        <!-- Editor Sub-header -->
-        <div class="panel-subbar">
-          <div class="subbar-left">
-            <div class="active-file-pill">
-              <i class="fa-solid fa-file-code file-icon"></i>
-              <span class="file-title" id="fileTitleDisplay">main.c</span>
-            </div>
-
-            <!-- Browse / Open File Button -->
-            <button class="browse-file-btn" id="browseFileBtn" title="Open or Browse .c file from your device">
-              <i class="fa-solid fa-folder-open"></i>
-              <span>Open File</span>
-            </button>
+    <aside class="main-menu-drawer" id="mainMenuDrawer" aria-label="Main Navigation Menu">
+      <!-- Top of Menu: Name of Compiler -->
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <div class="brand-emblem">&lt;AB&gt;</div>
+          <div class="drawer-brand-text">
+            <h2 class="drawer-title">AB C Studio</h2>
+            <span class="drawer-subtitle">v2.5 • GCC 13.2 Engine</span>
           </div>
+        </div>
+        <button type="button" class="drawer-close-btn" id="menuDrawerCloseBtn" aria-label="Close Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
 
-          <div class="subbar-right">
-            <!-- Hidden File Input for Open File -->
-            <input type="file" id="fileUploadInput" accept=".c,.h,.cpp,.txt" class="visually-hidden">
-
-            <!-- RUN BUTTON (Primary Action) -->
-            <button class="run-action-btn" id="runCodeBtn" title="Compile & Execute (Ctrl + Enter)">
-              <i class="fa-solid fa-play run-icon" id="runIcon"></i>
-              <span class="run-text" id="runBtnLabel">Run Code</span>
-              <kbd class="shortcut-tag desktop-only">Ctrl+↵</kbd>
-            </button>
+      <!-- Middle: Menu Options (Collapsible Accordions) -->
+      <div class="drawer-body">
+        
+        <!-- ACCORDION 1: BROWSE -->
+        <div class="drawer-accordion-group">
+          <button type="button" class="drawer-accordion-btn" data-target="drawerBrowseContent" aria-expanded="false">
+            <div class="accordion-btn-left">
+              <i class="fa-solid fa-folder-open accordion-icon"></i>
+              <span class="accordion-title">Browse</span>
+            </div>
+            <i class="fa-solid fa-chevron-right accordion-chevron"></i>
+          </button>
+          <div class="drawer-accordion-content" id="drawerBrowseContent">
+            <div class="drawer-items-inner">
+              <button type="button" class="drawer-item-btn" id="openNewProgramBtn">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <span>Open New Program</span>
+              </button>
+              <button type="button" class="drawer-item-btn" id="browseOpenFileBtn">
+                <i class="fa-solid fa-folder-open"></i>
+                <span>Open File...</span>
+              </button>
+              <button type="button" class="drawer-item-btn" id="saveProgramBtn">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Save</span>
+                <kbd class="drawer-kbd">Ctrl+S</kbd>
+              </button>
+              <button type="button" class="drawer-item-btn" id="saveAsProgramBtn">
+                <i class="fa-solid fa-file-export"></i>
+                <span>Save As...</span>
+              </button>
+              <button type="button" class="drawer-item-btn" id="shareProgramBtn">
+                <i class="fa-solid fa-share-nodes"></i>
+                <span>Share Code</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Code Editor Area -->
+        <div class="drawer-divider"></div>
+
+        <!-- ACCORDION 2: EDIT -->
+        <div class="drawer-accordion-group">
+          <button type="button" class="drawer-accordion-btn" data-target="drawerEditContent" aria-expanded="false">
+            <div class="accordion-btn-left">
+              <i class="fa-solid fa-pen-to-square accordion-icon"></i>
+              <span class="accordion-title">Edit</span>
+            </div>
+            <i class="fa-solid fa-chevron-right accordion-chevron"></i>
+          </button>
+          <div class="drawer-accordion-content" id="drawerEditContent">
+            <div class="drawer-items-inner">
+              <div class="drawer-inline-row">
+                <button type="button" class="drawer-sub-btn" id="undoBtn" title="Undo">
+                  <i class="fa-solid fa-rotate-left"></i>
+                  <span>Undo</span>
+                  <kbd class="drawer-kbd">Ctrl+Z</kbd>
+                </button>
+                <button type="button" class="drawer-sub-btn" id="redoBtn" title="Redo">
+                  <i class="fa-solid fa-rotate-right"></i>
+                  <span>Redo</span>
+                  <kbd class="drawer-kbd">Ctrl+Y</kbd>
+                </button>
+              </div>
+              <div class="drawer-inline-row">
+                <button type="button" class="drawer-sub-btn" id="cutBtn" title="Cut">
+                  <i class="fa-solid fa-scissors"></i>
+                  <span>Cut</span>
+                </button>
+                <button type="button" class="drawer-sub-btn" id="copyBtn" title="Copy">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Copy</span>
+                </button>
+                <button type="button" class="drawer-sub-btn" id="pasteBtn" title="Paste">
+                  <i class="fa-regular fa-paste"></i>
+                  <span>Paste</span>
+                </button>
+                <button type="button" class="drawer-sub-btn" id="deleteBtn" title="Delete">
+                  <i class="fa-regular fa-trash-can"></i>
+                  <span>Del</span>
+                </button>
+              </div>
+              <button type="button" class="drawer-item-btn" id="selectAllBtn">
+                <i class="fa-solid fa-object-group"></i>
+                <span>Select All</span>
+                <kbd class="drawer-kbd">Ctrl+A</kbd>
+              </button>
+              <button type="button" class="drawer-item-btn" id="findReplaceBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Find & Replace</span>
+                <kbd class="drawer-kbd">Ctrl+F</kbd>
+              </button>
+              <button type="button" class="drawer-item-btn" id="showShortcutsBtn">
+                <i class="fa-solid fa-keyboard"></i>
+                <span>Show Shortcuts</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="drawer-divider"></div>
+
+        <!-- ACCORDION 3: PERSONALIZATION -->
+        <div class="drawer-accordion-group">
+          <button type="button" class="drawer-accordion-btn" data-target="drawerPersonalizeContent" aria-expanded="false">
+            <div class="accordion-btn-left">
+              <i class="fa-solid fa-sliders accordion-icon"></i>
+              <span class="accordion-title">Personalization</span>
+            </div>
+            <i class="fa-solid fa-chevron-right accordion-chevron"></i>
+          </button>
+          <div class="drawer-accordion-content" id="drawerPersonalizeContent">
+            <div class="drawer-items-inner">
+              <!-- Theme Option -->
+              <button type="button" class="drawer-item-btn drawer-theme-row" id="openThemesModalBtn">
+                <div class="drawer-item-left">
+                  <i class="fa-solid fa-palette"></i>
+                  <div class="drawer-item-texts">
+                    <span>Theme</span>
+                    <span class="drawer-badge" id="currentThemeBadge">Cyber Night</span>
+                  </div>
+                </div>
+                <i class="fa-solid fa-chevron-right drawer-arrow"></i>
+              </button>
+
+              <!-- Font Size -->
+              <div class="drawer-config-block">
+                <label class="drawer-config-label"><i class="fa-solid fa-text-height"></i> Font Size</label>
+                <div class="drawer-pills-row" id="fontSizeSelector">
+                  <button type="button" class="drawer-pill" data-size="12">12px</button>
+                  <button type="button" class="drawer-pill active" data-size="14">14px</button>
+                  <button type="button" class="drawer-pill" data-size="16">16px</button>
+                  <button type="button" class="drawer-pill" data-size="18">18px</button>
+                  <button type="button" class="drawer-pill" data-size="20">20px</button>
+                </div>
+              </div>
+
+              <!-- Tab Size -->
+              <div class="drawer-config-block">
+                <label class="drawer-config-label"><i class="fa-solid fa-indent"></i> Tab Size</label>
+                <div class="drawer-pills-row" id="tabSizeSelector">
+                  <button type="button" class="drawer-pill" data-tab="2">2 Spaces</button>
+                  <button type="button" class="drawer-pill active" data-tab="4">4 Spaces</button>
+                  <button type="button" class="drawer-pill" data-tab="8">8 Spaces</button>
+                </div>
+              </div>
+
+              <!-- Line Numbers -->
+              <div class="drawer-config-block drawer-toggle-row">
+                <label class="drawer-config-label" for="toggleLineNumbersCheckbox">
+                  <i class="fa-solid fa-list-ol"></i> Line Numbers
+                </label>
+                <label class="switch-toggle" title="Toggle line numbers">
+                  <input type="checkbox" id="toggleLineNumbersCheckbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom of Menu: My Contact -->
+      <div class="drawer-footer">
+        <button type="button" class="drawer-contact-card" id="myContactBtn" title="Contact Creator Aditya">
+          <div class="contact-btn-avatar">&lt;AB&gt;</div>
+          <div class="drawer-contact-info">
+            <span class="drawer-contact-name">Aditya</span>
+            <span class="drawer-contact-role">My Contact & Socials</span>
+          </div>
+          <i class="fa-solid fa-address-card drawer-contact-icon"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- =========================================================================
+         MAIN WORKSPACE (Direct Full-Height Code & Output)
+         ========================================================================= -->
+    <main class="workspace-layout" id="workspaceLayout">
+
+      <!-- Hidden File Input for Open File -->
+      <input type="file" id="fileUploadInput" accept=".c,.h,.cpp,.txt" class="visually-hidden">
+
+      <!-- LEFT PANEL: CODE EDITOR -->
+      <section class="workspace-panel panel-editor" id="panelEditor">
+        
+        <!-- Code Editor Viewport -->
         <div class="editor-viewport" id="editorDropZone">
+          <!-- Find & Replace Floating Bar -->
+          <div class="find-replace-panel" id="findReplacePanel">
+            <div class="find-replace-row">
+              <div class="find-input-wrap">
+                <i class="fa-solid fa-magnifying-glass find-icon"></i>
+                <input type="text" id="findInput" class="find-input" placeholder="Find in code..." autocomplete="off">
+                <span class="find-match-count" id="findMatchCount">0/0</span>
+              </div>
+              <div class="find-btn-group">
+                <button type="button" class="find-tool-btn" id="findPrevBtn" title="Previous Match (Shift+Enter)"><i class="fa-solid fa-chevron-up"></i></button>
+                <button type="button" class="find-tool-btn" id="findNextBtn" title="Next Match (Enter)"><i class="fa-solid fa-chevron-down"></i></button>
+                <button type="button" class="find-tool-btn close-find-btn" id="closeFindBtn" title="Close (Esc)"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+            </div>
+            <div class="find-replace-row">
+              <div class="find-input-wrap">
+                <i class="fa-solid fa-arrows-rotate find-icon"></i>
+                <input type="text" id="replaceInput" class="find-input" placeholder="Replace with..." autocomplete="off">
+              </div>
+              <div class="find-btn-group">
+                <button type="button" class="find-action-btn" id="replaceOneBtn">Replace</button>
+                <button type="button" class="find-action-btn" id="replaceAllBtn">Replace All</button>
+              </div>
+            </div>
+          </div>
+
           <!-- Drop Overlay -->
           <div class="drop-overlay" id="dropOverlay">
             <div class="drop-box">
@@ -166,20 +365,20 @@
           </div>
         </div>
 
-        <!-- Editor Status Footer (Mobile/Desktop) -->
+        <!-- Editor Status Footer -->
         <div class="panel-statusbar">
           <div class="status-meta">
-            <span class="meta-item"><i class="fa-solid fa-lines-leaning"></i> <span id="lineCountLabel">1</span>
-              lines</span>
+            <span class="meta-item"><i class="fa-solid fa-file-code"></i> <span id="fileTitleDisplay">main.c</span></span>
+            <span class="meta-item"><i class="fa-solid fa-lines-leaning"></i> <span id="lineCountLabel">1</span> lines</span>
             <span class="meta-item"><i class="fa-solid fa-font"></i> <span id="charCountLabel">0</span> chars</span>
           </div>
           <div class="quick-tip desktop-only">
-            <span><i class="fa-solid fa-lightbulb"></i> <kbd>Tab</kbd> indent • <kbd>Ctrl+S</kbd> save</span>
+            <span><i class="fa-solid fa-lightbulb"></i> <kbd>Tab</kbd> indent • <kbd>Ctrl+S</kbd> save • <kbd>Ctrl+F</kbd> find</span>
           </div>
         </div>
       </section>
 
-      <!-- SPLIT RESIZER (Desktop & Tablet) -->
+      <!-- SPLIT RESIZER -->
       <div class="workspace-resizer" id="workspaceResizer" title="Drag to adjust panel width">
         <div class="resizer-grip">
           <span></span>
@@ -201,81 +400,171 @@
           </div>
 
           <div class="subbar-right">
-            <!-- Share Code Button -->
-            <button class="nav-icon-btn" id="shareCodeBtn" title="Copy code to clipboard">
-              <i class="fa-solid fa-share-nodes"></i>
+            <button type="button" class="nav-icon-btn" id="clearConsoleBtn" title="Clear Console">
+              <i class="fa-solid fa-broom"></i>
             </button>
-
-            <!-- Three-Dots Dropdown Menu -->
-            <div class="menu-dropdown-wrapper">
-              <button class="nav-icon-btn" id="menuToggleBtn" title="More IDE Options" aria-haspopup="true"
-                aria-expanded="false">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-              </button>
-
-              <div class="studio-dropdown" id="studioDropdown">
-                <button class="dropdown-row" id="fullScreenToggleBtn">
-                  <i class="fa-solid fa-expand" id="fullScreenIcon"></i>
-                  <span id="fullScreenText">Full Screen</span>
-                </button>
-                <button class="dropdown-row" id="clearConsoleBtn">
-                  <i class="fa-solid fa-broom"></i>
-                  <span>Clear Console</span>
-                </button>
-                <button class="dropdown-row" id="copyConsoleBtn">
-                  <i class="fa-regular fa-copy"></i>
-                  <span>Copy Output</span>
-                </button>
-                <div class="dropdown-divider"></div>
-                <button class="dropdown-row" id="downloadSourceBtn">
-                  <i class="fa-solid fa-download"></i>
-                  <span>Download .c File</span>
-                </button>
-                <div class="dropdown-divider"></div>
-                <button class="dropdown-row" id="contactDevBtn">
-                  <i class="fa-solid fa-address-card"></i>
-                  <span>Developer Contacts</span>
-                </button>
-              </div>
-            </div>
+            <button type="button" class="nav-icon-btn" id="copyConsoleBtn" title="Copy Output to Clipboard">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+            <button type="button" class="nav-icon-btn" id="fullScreenToggleBtn" title="Toggle Fullscreen">
+              <i class="fa-solid fa-expand" id="fullScreenIcon"></i>
+            </button>
           </div>
         </div>
 
         <!-- Output Terminal Viewport -->
         <div class="output-viewport" id="outputViewport">
-          <!-- Terminal Logs Stream -->
           <div class="terminal-logs" id="terminalLogs">
-            <!-- Will be dynamically populated -->
+            <!-- Populated dynamically -->
           </div>
         </div>
 
         <!-- Output Status Footer -->
         <div class="panel-statusbar">
           <div class="status-meta">
-            <span class="meta-item"><i class="fa-solid fa-stopwatch"></i> <span id="executionTimeLabel">0
-                ms</span></span>
-            <span class="meta-item"><i class="fa-solid fa-circle-check"></i> <span id="exitStatusLabel">Exit:
-                0</span></span>
+            <span class="meta-item"><i class="fa-solid fa-stopwatch"></i> <span id="executionTimeLabel">0 ms</span></span>
+            <span class="meta-item"><i class="fa-solid fa-circle-check"></i> <span id="exitStatusLabel">Exit: 0</span></span>
           </div>
           <div class="quick-tip">
-            <button class="creator-badge-btn" id="footerContactBtn" title="Contact Aditya">
-              <i class="fa-solid fa-code"></i> By Aditya &lt;AB&gt;
-            </button>
+            <span class="footer-app-label"><i class="fa-solid fa-code"></i> AB C Studio GCC Engine</span>
           </div>
         </div>
       </section>
 
     </main>
 
-    <!-- FLOATING RUN BUTTON FOR MOBILE -->
-    <div class="mobile-floating-bar" id="mobileFloatingBar">
-      <button class="mobile-run-btn" id="mobileRunBtn">
-        <i class="fa-solid fa-play"></i>
-        <span>Run Code</span>
-      </button>
+    <!-- =========================================================================
+         THEMES MODAL (10 Themes)
+         ========================================================================= -->
+    <div class="modal-backdrop" id="themeModal">
+      <div class="theme-picker-dialog">
+        <div class="dialog-header">
+          <div class="dialog-title-group">
+            <div class="dialog-title-icon"><i class="fa-solid fa-palette"></i></div>
+            <div>
+              <h3>Choose IDE Theme</h3>
+              <p class="dialog-subtitle">Select from 10 custom color palettes</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-icon" id="closeThemeModalBtn" aria-label="Close Theme Picker">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Category Tabs: All, Light, Dark -->
+        <div class="theme-category-nav">
+          <button type="button" class="category-filter-btn active" data-category="all">
+            <i class="fa-solid fa-border-all"></i>
+            <span>All (10)</span>
+          </button>
+          <button type="button" class="category-filter-btn" data-category="light">
+            <i class="fa-regular fa-sun"></i>
+            <span>Light (5)</span>
+          </button>
+          <button type="button" class="category-filter-btn" data-category="dark">
+            <i class="fa-solid fa-moon"></i>
+            <span>Dark (5)</span>
+          </button>
+        </div>
+
+        <!-- Theme Grid Cards -->
+        <div class="themes-grid" id="themesGrid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
     </div>
 
-    <!-- DEVELOPER CONTACT & SOCIALS MODAL -->
+    <!-- =========================================================================
+         SAVE AS MODAL
+         ========================================================================= -->
+    <div class="modal-backdrop" id="saveAsModal">
+      <div class="dialog-card save-as-card">
+        <div class="dialog-header">
+          <div class="dialog-title-group">
+            <div class="dialog-title-icon"><i class="fa-solid fa-file-export"></i></div>
+            <div>
+              <h3>Save As</h3>
+              <p class="dialog-subtitle">Specify file name to download your C program</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-icon" id="closeSaveAsModalBtn" aria-label="Close Save As Dialog">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-body">
+          <div class="input-field-group">
+            <label for="saveAsFileNameInput">File Name</label>
+            <input type="text" id="saveAsFileNameInput" class="modal-text-input" value="main.c" placeholder="filename.c" autocomplete="off">
+          </div>
+        </div>
+        <div class="dialog-footer">
+          <button type="button" class="modal-btn modal-btn-secondary" id="cancelSaveAsBtn">Cancel</button>
+          <button type="button" class="modal-btn modal-btn-primary" id="confirmSaveAsBtn">
+            <i class="fa-solid fa-download"></i> Save & Download
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         KEYBOARD SHORTCUTS MODAL
+         ========================================================================= -->
+    <div class="modal-backdrop" id="shortcutsModal">
+      <div class="dialog-card shortcuts-card">
+        <div class="dialog-header">
+          <div class="dialog-title-group">
+            <div class="dialog-title-icon"><i class="fa-solid fa-keyboard"></i></div>
+            <div>
+              <h3>Keyboard Shortcuts</h3>
+              <p class="dialog-subtitle">Boost your productivity in AB C Studio</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-icon" id="closeShortcutsModalBtn" aria-label="Close Shortcuts Dialog">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-body">
+          <div class="shortcuts-table">
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Compile & Run Code</span>
+              <kbd class="shortcut-key">Ctrl + Enter</kbd>
+            </div>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Save File</span>
+              <kbd class="shortcut-key">Ctrl + S</kbd>
+            </div>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Find & Replace</span>
+              <kbd class="shortcut-key">Ctrl + F</kbd>
+            </div>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Undo</span>
+              <kbd class="shortcut-key">Ctrl + Z</kbd>
+            </div>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Redo</span>
+              <kbd class="shortcut-key">Ctrl + Y</kbd>
+            </div>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Select All</span>
+              <kbd class="shortcut-key">Ctrl + A</kbd>
+            </div>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Indent</span>
+              <kbd class="shortcut-key">Tab</kbd>
+            </div>
+            <div class="shortcut-item">
+              <span class="shortcut-desc">Close Active Window / Menu</span>
+              <kbd class="shortcut-key">Esc</kbd>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         DEVELOPER CONTACT & SOCIALS MODAL
+         ========================================================================= -->
     <div class="contact-modal-backdrop" id="contactModal">
       <div class="contact-card">
         <div class="contact-header">
@@ -286,7 +575,7 @@
               <span class="contact-role">Creator & Developer</span>
             </div>
           </div>
-          <button class="modal-close-icon" id="closeContactModalBtn" aria-label="Close Contact Dialog">
+          <button type="button" class="modal-close-icon" id="closeContactModalBtn" aria-label="Close Contact Dialog">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -294,7 +583,6 @@
         <div class="contact-body">
           <p class="contact-intro">Feel free to connect, report bugs, or collaborate on C projects!</p>
 
-          <!-- Contact Channels -->
           <div class="contact-links-grid">
             <!-- GitHub Link -->
             <a href="https://github.com/ADImatrix-user" target="_blank" rel="noopener noreferrer"
@@ -326,7 +614,7 @@
               <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
             </a>
 
-            <!-- Gmail Link (Opens Gmail Web Compose directly prefilled) -->
+            <!-- Gmail Link -->
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bakodiyaadi@gmail.com" target="_blank"
               rel="noopener noreferrer" class="contact-item contact-gmail" id="gmailLinkCard"
               title="Compose Email to Aditya in Gmail">
