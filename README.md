@@ -107,8 +107,8 @@ There are two ways to view this project on your computer.
 5. Double-click **`index.html`**, or right-click it and choose **Open with → Google Chrome** (or any modern web browser).
 
 ### Method 2: Copy & Paste ( recommended)
-1.Copy this URL : /*https://adimatrix-user.github.io/C-compiler/*/.
-2.Pate this in address bar and it will work.
+1. Copy this URL : **`https://adimatrix-user.github.io/C-compiler/`**.
+2. Pate this in address bar and it will work.
 
 ---
 
