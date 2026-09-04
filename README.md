@@ -88,7 +88,6 @@ c-compiler/
 ├── index.html       # Semantic HTML5 IDE structure with SEO Schema & OpenGraph tags
 ├── styles.css       # Deep Obsidian design system & responsive layout
 ├── app.js           # Core compiler logic, interactive terminal engine & handlers
-├── samples/         # Sample C algorithms (e.g. factorial.c)
 └── README.md        # Documentation
 ```
 
